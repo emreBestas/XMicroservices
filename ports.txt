@@ -1,0 +1,10 @@
+services
+-catalog api => port:http://localhost:5120
+-photoStock => port:http://localhost:5095
+-basket api => port:http://localhost:5067
+-discount api => port:http://localhost:5298
+-Order api => port:http://localhost:5266
+-FakePay api => port:http://localhost:5135
+-IdentityServer => Port:5001
+
+-web http://localhost:5010

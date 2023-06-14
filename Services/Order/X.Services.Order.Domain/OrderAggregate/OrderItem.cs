@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using X.Services.Order.Domain.Core;
+
+namespace X.Services.Order.Domain.OrderAggregate
+{
+    public class OrderItem:Entity
+        
+    {
+        public OrderItem()
+        {
+            
+        }
+        public OrderItem(string prodcutId, string productName, string pictureUrl, decimal price)
+        {
+            ProdcutId = prodcutId;
+            ProductName = productName;
+            PictureUrl = pictureUrl;
+            Price = price;
+        }
+
+        public string ProdcutId { get; private set; }
+        public string ProductName { get; private set; }
+        public string PictureUrl { get; private set; }
+        public decimal Price { get; private set; }
+
+        public void UpdateOrderItem(string productName, string pictureUrl, decimal price)
+        {
+            ProductName = productName;
+            PictureUrl = pictureUrl;
+            Price = price;
+        }
+    }
+}
