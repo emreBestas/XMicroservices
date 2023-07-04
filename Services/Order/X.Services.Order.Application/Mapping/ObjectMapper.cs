@@ -1,9 +1,4 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace X.Services.Order.Application.Mapping
 {
@@ -17,6 +12,6 @@ namespace X.Services.Order.Application.Mapping
             });
             return config.CreateMapper();
         });
-        public static IMapper Mapper=>lazy.Value;
+        public static IMapper Mapper => lazy.Value;
     }
 }

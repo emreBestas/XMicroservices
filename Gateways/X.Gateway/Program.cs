@@ -15,7 +15,8 @@ builder.Services.AddAuthentication().AddJwtBearer("GatewayAuthenticationScheme",
 
 ///
 var app = builder.Build();
-
+app.UseDeveloperExceptionPage();
+app.UseAuthorization();
 app.MapGet("/", () => "Hello World!");
 await app.UseOcelot();
 app.Run();

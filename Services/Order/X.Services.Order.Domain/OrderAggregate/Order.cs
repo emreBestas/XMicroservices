@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using X.Services.Order.Domain.Core;
+﻿using X.Services.Order.Domain.Core;
 
 namespace X.Services.Order.Domain.OrderAggregate
 {
@@ -16,7 +11,7 @@ namespace X.Services.Order.Domain.OrderAggregate
         public IReadOnlyCollection<OrderItem> OrderItems => _orderItems;
         public Order()
         {
-            
+
         }
         public Order(string buyerID, Address address)
         {

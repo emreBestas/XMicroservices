@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using X.Services.Discount.Services;
 using X.Shared.ControllerBases;
 using X.Shared.Services;

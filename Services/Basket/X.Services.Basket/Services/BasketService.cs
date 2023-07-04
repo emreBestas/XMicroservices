@@ -15,7 +15,7 @@ namespace X.Services.Basket.Services
 
         public async Task<Response<bool>> DeleteBasket(string userId)
         {
-            var status= await _redisService.GetDb().KeyDeleteAsync(userId);
+            var status = await _redisService.GetDb().KeyDeleteAsync(userId);
             return status ? Response<bool>.Success(204) : Response<bool>.Fail("basket not found", 404);
         }
 
@@ -32,7 +32,10 @@ namespace X.Services.Basket.Services
         public async Task<Response<bool>> SaveOrUpdate(BasketDto basketDto)
         {
             var status = await _redisService.GetDb().StringSetAsync(basketDto.UserId, JsonSerializer.Serialize(basketDto));
-            return status ? Response<bool>.Success(204) : Response<bool>.Fail("basket could not update or save", 500);
+            if (status == false) { return Response<bool>.Fail("basket could not update or save", 500); }
+
+            return Response<bool>.Success(204);
+            //return status ? Response<bool>.Success(204) : Response<bool>.Fail("basket could not update or save", 500);
         }
     }
 }

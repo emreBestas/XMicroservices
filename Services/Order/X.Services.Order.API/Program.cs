@@ -1,9 +1,11 @@
+using MassTransit;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using System.IdentityModel.Tokens.Jwt;
+using X.Services.Order.Application.Consumers;
 using X.Services.Order.Infrastructure;
 using X.Shared.Services;
 
@@ -21,19 +23,43 @@ builder.Services.AddControllers(opt =>
 {
     opt.Filters.Add(new AuthorizeFilter(requireAuthorizePolicy));
 });
+builder.Services.AddMassTransit(x =>
+{
+    x.AddConsumer<CourseNameChangeEventConsumer>();
+    x.AddConsumer<CreateOrderMessageCommandConsumer>();
+    x.UsingRabbitMq((context, cfg) =>
+    { //Default port:5672
 
+        cfg.Host(builder.Configuration["RabbitMQUrl"], "/", host =>
+        {
+            host.Username("guest");
+            host.Password("guest");
+        });
+        cfg.ReceiveEndpoint("create-order-service", e =>
+        {
+            e.ConfigureConsumer<CreateOrderMessageCommandConsumer>(context);
+        });
+        cfg.ReceiveEndpoint("courseNameChangeEventOrderService", e =>
+        {
+            e.ConfigureConsumer<CourseNameChangeEventConsumer>(context);
+        });
+
+    });
+});
 
 
 // Add services to the container.
 
 
-builder.Services.AddDbContext<OrderDbContext>(opt => 
-{ opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), configure =>
+builder.Services.AddDbContext<OrderDbContext>(opt =>
+{
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), configure =>
 {
     configure.MigrationsAssembly("X.Services.Order.Infrastructure");
-});});
+});
+});
 builder.Services.AddMediatR(typeof(X.Services.Order.Application.Handlers.CreateOrderCommandHandler).Assembly);
-builder.Services.AddScoped<ISharedIdentityService,SharedIdentityService>();
+builder.Services.AddScoped<ISharedIdentityService, SharedIdentityService>();
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddEndpointsApiExplorer();

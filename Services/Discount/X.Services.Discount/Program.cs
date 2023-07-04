@@ -20,8 +20,8 @@ builder.Services.AddControllers(opt =>
     opt.Filters.Add(new AuthorizeFilter(requireAuthorizePolicy));
 });
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddScoped<ISharedIdentityService,SharedIdentityService>();
-builder.Services.AddScoped<IDiscountService,DiscountService>();
+builder.Services.AddScoped<ISharedIdentityService, SharedIdentityService>();
+builder.Services.AddScoped<IDiscountService, DiscountService>();
 
 
 builder.Services.AddEndpointsApiExplorer();

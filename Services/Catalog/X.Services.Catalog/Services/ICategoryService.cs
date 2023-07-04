@@ -1,5 +1,4 @@
 ﻿using X.Services.Catalog.DTOs;
-using X.Services.Catalog.Models;
 using X.Shared.DTOs;
 
 namespace X.Services.Catalog.Services

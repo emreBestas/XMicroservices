@@ -14,12 +14,12 @@ namespace X.IdentityServer
         public static IEnumerable<ApiResource> ApiResources => new ApiResource[]
         {
             new ApiResource("resource_catolog"){Scopes={"catalog_fullpermission"}},
-             new ApiResource("resource_photo_stock"){Scopes={"photo_stock_fullpermisson"}},
-              new ApiResource("resource_basket"){Scopes={"basket_fullpermisson"}},
-               new ApiResource("resource_discount"){Scopes={"discount_fullpermisson"}},
-                new ApiResource("resource_order"){Scopes={"order_fullpermisson"}},
-                 new ApiResource("resource_payment"){Scopes={"payment_fullpermisson"}},
-                  new ApiResource("resource_gateway"){Scopes={"gateway_fullpermisson"}},
+             new ApiResource("resource_photo_stock"){Scopes={"photo_stock_fullpermission"}},
+              new ApiResource("resource_basket"){Scopes={"basket_fullpermission"}},
+               new ApiResource("resource_discount"){Scopes={"discount_fullpermission"}},
+                new ApiResource("resource_order"){Scopes={"order_fullpermission"}},
+                 new ApiResource("resource_payment"){Scopes={"payment_fullpermission"}},
+                  new ApiResource("resource_gateway"){Scopes={"gateway_fullpermission"}},
                    new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
         };
         public static IEnumerable<IdentityResource> IdentityResources =>
@@ -35,12 +35,12 @@ namespace X.IdentityServer
             new ApiScope[]
             {
                new ApiScope("catalog_fullpermission"),
-                new ApiScope("photo_stock_fullpermisson"),
-                 new ApiScope("basket_fullpermisson"),
-                  new ApiScope("discount_fullpermisson"),
-                   new ApiScope("order_fullpermisson"),
-                    new ApiScope("payment_fullpermisson"),
-                     new ApiScope("gateway_fullpermisson"),
+                new ApiScope("photo_stock_fullpermission"),
+                 new ApiScope("basket_fullpermission"),
+                  new ApiScope("discount_fullpermission"),
+                   new ApiScope("order_fullpermission"),
+                    new ApiScope("payment_fullpermission"),
+                     new ApiScope("gateway_fullpermission"),
                new ApiScope(IdentityServerConstants.LocalApi.ScopeName)
             };
 
@@ -53,7 +53,7 @@ namespace X.IdentityServer
                     ClientId="WebMvcClient",
                     ClientSecrets={new Secret("secret".Sha256())},
                     AllowedGrantTypes=GrantTypes.ClientCredentials,
-                    AllowedScopes={ "catalog_fullpermission", "photo_stock_fullpermisson", IdentityServerConstants.LocalApi.ScopeName }
+                    AllowedScopes={ "catalog_fullpermission", "photo_stock_fullpermission", "gateway_fullpermission", IdentityServerConstants.LocalApi.ScopeName }
                 },
                new Client
                 {
@@ -64,7 +64,7 @@ namespace X.IdentityServer
                     AllowedGrantTypes=GrantTypes.ResourceOwnerPassword,
                     AllowedScopes=
                     {
-                       "basket_fullpermisson","discount_fullpermisson","order_fullpermisson","payment_fullpermisson","gateway_fullpermisson",
+                       "basket_fullpermission","discount_fullpermission","order_fullpermission","payment_fullpermission","gateway_fullpermission",
                        IdentityServerConstants.StandardScopes.Email,
                        IdentityServerConstants.StandardScopes.Profile,
                        IdentityServerConstants.StandardScopes.OpenId,

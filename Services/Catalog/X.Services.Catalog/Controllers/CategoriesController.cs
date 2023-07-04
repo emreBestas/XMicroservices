@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using X.Services.Catalog.DTOs;
 using X.Services.Catalog.Services;
 using X.Shared.ControllerBases;
@@ -8,18 +7,18 @@ namespace X.Services.Catalog.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoryController : CustomBaseController
+    public class CategoriesController : CustomBaseController
     {
         private readonly ICategoryService _categoryService;
 
-        public CategoryController(ICategoryService categoryService)
+        public CategoriesController(ICategoryService categoryService)
         {
             _categoryService = categoryService;
         }
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var response= await _categoryService.GetAllAsync();
+            var response = await _categoryService.GetAllAsync();
             return CreateActionResultInstance(response);
         }
         [HttpGet("{id}")]

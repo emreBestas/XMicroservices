@@ -37,7 +37,7 @@ namespace X.Services.Discount.Services
 
         public async Task<Response<Models.Discount>> GetById(int id)
         {
-           
+
             var discount = (await _dbConnection.QueryAsync<Models.Discount>("select * from discount where id=@Id", new { Id = id })).SingleOrDefault();
 
             if (discount == null)

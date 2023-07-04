@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
+﻿using Microsoft.AspNetCore.Mvc;
 using X.Services.Basket.DTOs;
 using X.Services.Basket.Services;
 using X.Shared.ControllerBases;
@@ -13,29 +11,34 @@ namespace X.Services.Basket.Controllers
     public class BasketsController : CustomBaseController
     {
         private readonly IBasketService _basketService;
-        private readonly ISharedIdentityService _identityService;
+        private readonly ISharedIdentityService _sharedIdentityService;
 
-        public BasketsController(IBasketService basketService, ISharedIdentityService identityService)
+        public BasketsController(IBasketService basketService, ISharedIdentityService sharedIdentityService)
         {
             _basketService = basketService;
-            _identityService = identityService;
+            _sharedIdentityService = sharedIdentityService;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetBasket()
         {
-            return CreateActionResultInstance(await _basketService.GetBasket(_identityService.GetUserID));
+            return CreateActionResultInstance(await _basketService.GetBasket(_sharedIdentityService.GetUserID));
         }
+
         [HttpPost]
-        public async Task<IActionResult> SaveOrUpdate(BasketDto basketDto)
+        public async Task<IActionResult> SaveOrUpdateBasket(BasketDto basketDto)
         {
+            basketDto.UserId = _sharedIdentityService.GetUserID;
             var response = await _basketService.SaveOrUpdate(basketDto);
+
             return CreateActionResultInstance(response);
         }
+
         [HttpDelete]
         public async Task<IActionResult> DeleteBasket()
+
         {
-            return CreateActionResultInstance(await _basketService.DeleteBasket(_identityService.GetUserID));
+            return CreateActionResultInstance(await _basketService.DeleteBasket(_sharedIdentityService.GetUserID));
         }
     }
 }

@@ -3,8 +3,6 @@
 
 
 using IdentityServer4;
-using X.IdentityServer.Data;
-using X.IdentityServer.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -12,6 +10,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using X.IdentityServer.Data;
+using X.IdentityServer.Models;
 using X.IdentityServer.Services;
 
 namespace X.IdentityServer

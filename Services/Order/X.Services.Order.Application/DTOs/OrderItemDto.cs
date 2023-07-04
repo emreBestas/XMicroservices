@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace X.Services.Order.Application.DTOs
+﻿namespace X.Services.Order.Application.DTOs
 {
     public class OrderItemDto
     {
-        public string ProdcutId { get;  set; }
-        public string ProductName { get;  set; }
-        public string PictureUrl { get;  set; }
-        public decimal Price { get;  set; }
+        public string ProdcutId { get; set; }
+        public string ProductName { get; set; }
+        public string PictureUrl { get; set; }
+        public Decimal Price { get; set; }
     }
 }

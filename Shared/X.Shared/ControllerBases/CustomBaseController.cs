@@ -3,7 +3,7 @@ using X.Shared.DTOs;
 
 namespace X.Shared.ControllerBases
 {
-    public class CustomBaseController:ControllerBase
+    public class CustomBaseController : ControllerBase
     {
         public IActionResult CreateActionResultInstance<T>(Response<T> responseDto)
         {

@@ -16,7 +16,7 @@ namespace X.Services.Order.Application.Handlers
         }
         public async Task<Response<CreatedOrderDto>> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
-            var newAddress = new Address(request.AddressDto.Provice, request.AddressDto.District, request.AddressDto.ZipCode, request.AddressDto.Line, request.AddressDto.Street);
+            var newAddress = new Address(request.Address.Provice, request.Address.District, request.Address.ZipCode, request.Address.Line, request.Address.Street);
             Domain.OrderAggregate.Order newOrder = new Domain.OrderAggregate.Order(request.BuyerId, newAddress);
             request.OrderItesms.ForEach(x =>
             {

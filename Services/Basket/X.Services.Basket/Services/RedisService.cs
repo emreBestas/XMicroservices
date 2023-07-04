@@ -1,5 +1,4 @@
 ﻿using StackExchange.Redis;
-using System.Net.NetworkInformation;
 
 namespace X.Services.Basket.Services
 {
@@ -14,6 +13,6 @@ namespace X.Services.Basket.Services
             _port = port;
         }
         public void Connect() => _multiplexer = ConnectionMultiplexer.Connect($"{_host}:{_port}");
-        public IDatabase GetDb(int db=1)=>_multiplexer.GetDatabase(db);
+        public IDatabase GetDb(int db = 1) => _multiplexer.GetDatabase(db);
     }
 }

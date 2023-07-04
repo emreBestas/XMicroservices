@@ -4,7 +4,7 @@ using X.Services.Order.Domain.OrderAggregate;
 
 namespace X.Services.Order.Application.Mapping
 {
-    public class CustomMapping:Profile
+    public class CustomMapping : Profile
     {
         public CustomMapping()
         {

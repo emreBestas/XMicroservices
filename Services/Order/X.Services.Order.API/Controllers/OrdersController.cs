@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using X.Services.Order.Application.Commands;
 using X.Services.Order.Application.Queries;
@@ -23,7 +22,7 @@ namespace X.Services.Order.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetOrders()
         {
-            var response= await _mediator.Send(new GetOrdersByUserIdQuery {UserId=_identityService.GetUserID });
+            var response = await _mediator.Send(new GetOrdersByUserIdQuery { UserId = _identityService.GetUserID });
             return CreateActionResultInstance(response);
         }
         [HttpPost]

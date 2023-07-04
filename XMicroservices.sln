@@ -52,11 +52,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.Services.FakePayment", "S
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateways", "Gateways", "{221D6F76-D719-42EB-A90B-E3EF42D3E204}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X.Gateway", "Gateways\X.Gateway\X.Gateway.csproj", "{5415EC79-D737-44B2-ADED-FA6C04361855}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.Gateway", "Gateways\X.Gateway\X.Gateway.csproj", "{5415EC79-D737-44B2-ADED-FA6C04361855}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontends", "Frontends", "{8C9C922D-1B11-4C97-A57F-B03B23E2D72D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X.Web", "Frontends\X.Web\X.Web.csproj", "{D50FC3E6-7AA2-46F5-8E92-CF0FA76F489D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.Web", "Frontends\X.Web\X.Web.csproj", "{D50FC3E6-7AA2-46F5-8E92-CF0FA76F489D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

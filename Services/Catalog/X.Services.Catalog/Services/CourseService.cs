@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http.HttpResults;
+using Mass = MassTransit;
 using MongoDB.Driver;
 using X.Services.Catalog.DTOs;
 using X.Services.Catalog.Models;
 using X.Services.Catalog.Settings;
 using X.Shared.DTOs;
-using ZstdSharp.Unsafe;
+using X.Shared.Messages;
 
 namespace X.Services.Catalog.Services
 {
@@ -14,8 +14,9 @@ namespace X.Services.Catalog.Services
         private readonly IMongoCollection<Category> _categoryCollection;
         private readonly IMongoCollection<Course> _courseCollection;
         private readonly IMapper _mapper;
+        private readonly Mass.IPublishEndpoint _publishEndpoint;
 
-        public CourseService(IMapper mapper, IDatabaseSettings databaseSettings)
+        public CourseService(IMapper mapper, IDatabaseSettings databaseSettings, Mass.IPublishEndpoint publishEndpoint)
         {
             var client = new MongoClient(databaseSettings.ConnectionString);
 
@@ -25,7 +26,7 @@ namespace X.Services.Catalog.Services
 
             _categoryCollection = database.GetCollection<Category>(databaseSettings.CategoryCollectionName);
             _mapper = mapper;
-
+            _publishEndpoint = publishEndpoint;
 
         }
 
@@ -80,6 +81,7 @@ namespace X.Services.Catalog.Services
             var updateCource = _mapper.Map<Course>(courseUpdateDto);
             var result = await _courseCollection.FindOneAndReplaceAsync(x => x.Id == courseUpdateDto.Id, updateCource);
             if (result == null) { Response<NoContentDto>.Fail("Course not found", 404); }
+            await _publishEndpoint.Publish<CourseNameChangedEvent>(new CourseNameChangedEvent { CourseId = updateCource.Id, UpdateName = updateCource.Name });
             return Response<NoContentDto>.Success(204);
         }
         public async Task<Response<NoContentDto>> DeleteAsync(string id)

@@ -19,11 +19,11 @@ namespace X.IdentityServer.Services
         public async Task ValidateAsync(ResourceOwnerPasswordValidationContext context)
         {
             var existUser = await _userManager.FindByEmailAsync(context.UserName);
-            if (existUser == null) 
+            if (existUser == null)
             {
-                var errors = new Dictionary<string,object>();
+                var errors = new Dictionary<string, object>();
                 errors.Add("errors", new List<string> { "Your email or password is incorrect" });
-                context.Result.CustomResponse=errors;
+                context.Result.CustomResponse = errors;
                 return;
             }
             var passwordCheck = await _userManager.CheckPasswordAsync(existUser, context.Password);

@@ -5,7 +5,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
@@ -42,18 +41,18 @@ namespace X.IdentityServer
             try
             {
                 var host = CreateHostBuilder(args).Build();
-                using(var scope = host.Services.CreateScope())
+                using (var scope = host.Services.CreateScope())
                 {
                     var serviceProvider = scope.ServiceProvider;
-                    var applicationDbContext=serviceProvider.GetRequiredService<ApplicationDbContext>();
+                    var applicationDbContext = serviceProvider.GetRequiredService<ApplicationDbContext>();
                     applicationDbContext.Database.Migrate();
-                    var userManager=serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+                    var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
                     if (!userManager.Users.Any())
                     {
                         userManager.CreateAsync(new ApplicationUser { UserName = "Karachai", Email = "ikmmKarachai@gmail.com", City = "istanbul" }, "Password12*").Wait();
                     }
                 }
-       
+
 
                 Log.Information("Starting host...");
                 host.Run();

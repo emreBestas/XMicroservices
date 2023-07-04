@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using X.Services.Catalog.DTOs;
 using X.Services.Catalog.Services;
 using X.Shared.ControllerBases;
